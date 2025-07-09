@@ -3,15 +3,21 @@ import StarIcon from "../assets/icons/star.svg";
 
 const words = [
   "Performant",
-  "Accessible",
-  "Secure",
-  "Interactive",
   "Scalable",
-  "User Friendly",
+  "Secure",
+  "Modular",
   "Responsive",
   "Maintainable",
-  "Search Optimized",
-  "Usable",
+  "Type Safe",
+  "Testable",
+  "API-Driven",
+  "Cloud Ready",
+  "Optimized",
+  "Automated",
+  "Reusable",
+  "Robust",
+  "Documented",
+  "Versioned",
   "Reliable"
 ];
 

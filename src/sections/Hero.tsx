@@ -1,3 +1,5 @@
+"use client";
+
 import memojiImage from "../assets/images/memoji-computer.png";
 import Image from "next/image";
 import ArrowDown from '../assets/icons/arrow-down.svg';
@@ -5,11 +7,15 @@ import grainImage from '../assets/images/grain.jpg';
 import StarIcon from '../assets/icons/star.svg';
 import SparkleIcon from '../assets/icons/sparkle.svg';
 import { HeroOrbit } from "@/components/HeroOrbit";
+import { useState } from "react";
+import { Dialog } from "@headlessui/react";
 
 
 export const HeroSection = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="py-32 md:py-48 lg:py-60 relative z-0 overflow-x-clip">
+    <div id="home" className="py-32 md:py-48 lg:py-60 relative z-0 overflow-x-clip">
       <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
       <div className="absolute inset-0 -z-30 opacity-5" style={{
         backgroundImage: `url(${grainImage.src})`,
@@ -64,32 +70,100 @@ export const HeroSection = () => {
         </div>
       <div className="container"> 
         <div className="flex flex-col items-center">
-        <Image src={memojiImage} className="size-[100px]" alt="Person peeking from behind laptop" />
-        <div className="bg-gray-950 border border-gray-800 px-4 py-1.5 inline-flex items-center gap-4 rounded-lg">
-          <div className="bg-green-500 size-2.5 rounded-full relative">
-            <div className="bg-green-500 absolute inset-0 rounded-full animate-ping-large"></div>
+          <Image
+            src={memojiImage}
+            className="size-[160px] md:size-[200px]" // Increased size for larger screens
+            alt="Person peeking from behind laptop"
+            priority
+          />
+          <div className="bg-gray-950 border border-gray-800 px-4 py-1.5 inline-flex items-center gap-4 rounded-lg">
+            <div className="bg-green-500 size-2.5 rounded-full relative">
+              <div className="bg-green-500 absolute inset-0 rounded-full animate-ping-large"></div>
+            </div>
+            <div className="text-sm font-medium">Available for new projects</div>
           </div>
-          <div className="text-sm font-medium">Available for new projects</div>
-        </div>
         </div>
         <div className="max-w-lg mx-auto">
-          <h1 className="font-serif text-3xl md:text-5xl text-center mt-8 tracking-wide">
-            Building Exceptional User Experiences</h1>
-          <p className="mt-4 text-center text-white/60 md:text-lg">
-          I’m Rifaf — a creative Software Engineering student who brings ideas to life through sleek, functional web experiences. From responsive UIs to full-stack builds, 
-          I craft digital solutions that leave an impact.
-</p>
-</div>
-<div className="flex flex-col md:flex-row justify-center items-center mt-8 gap-4">
-  <button className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl">
-    <span className="font-semibold">Explore My Work</span>
-    <ArrowDown className="size-4"/>
-  </button>
-  <button className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl">
+          <h1 className="font-serif text-4xl md:text-6xl text-center mt-3 tracking-wide text-emerald-300 drop-shadow-lg">
+            RIFAF RAHMAN
+          </h1>
+          <p className="mt-2 text-center text-white/70 md:text-lg font-semibold leading-snug">
+            Sleek Code<br />
+            Smooth Experiences
+          </p>
+        </div>
+<div className="flex flex-col md:flex-row justify-center items-center mt-8 gap-4 z-10 relative">
+  <a
+    href="https://drive.google.com/file/d/1c1T6iY7rQlgGfCI7qq_yCQ2n76Db9Qpm/view?usp=sharing"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl font-semibold transition hover:bg-white/10"
+  >
+    <span>Unlock My CV</span>
+    <ArrowDown className="size-4" />
+  </a>
+  <button
+    className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl"
+    onClick={() => setIsOpen(true)}
+  >
     <span>👋</span>
     <span className="font-semibold">Let's Connect</span>
   </button>
 </div>
+
+{/* Modal */}
+<Dialog open={isOpen} onClose={() => setIsOpen(false)} className="fixed z-50 inset-0 flex items-center justify-center">
+  <div className="fixed inset-0 bg-black/60" aria-hidden="true" onClick={() => setIsOpen(false)} />
+  <div className="relative bg-gray-900 rounded-2xl shadow-xl p-8 w-full max-w-md mx-auto z-50">
+    <button
+      className="absolute top-3 right-3 text-white/60 hover:text-white text-2xl"
+      onClick={() => setIsOpen(false)}
+      aria-label="Close"
+    >
+      &times;
+    </button>
+    <h2 className="text-2xl font-bold text-emerald-300 mb-2 text-center">Let's create something awesome together!</h2>
+    <form className="flex flex-col gap-3 mt-4">
+      <input
+        type="text"
+        placeholder="Your Name"
+        className="rounded px-3 py-2 bg-gray-800 text-white border border-gray-700 focus:outline-none"
+      />
+      <input
+        type="email"
+        placeholder="Your Email"
+        className="rounded px-3 py-2 bg-gray-800 text-white border border-gray-700 focus:outline-none"
+      />
+      <textarea
+        placeholder="Your Message"
+        className="rounded px-3 py-2 bg-gray-800 text-white border border-gray-700 focus:outline-none"
+        rows={3}
+      />
+      <button
+        type="submit"
+        className="bg-emerald-400 text-gray-900 font-semibold rounded py-2 mt-2 hover:bg-emerald-300 transition"
+      >
+        Send Message
+      </button>
+    </form>
+    <div className="mt-6 flex flex-col items-center gap-2">
+      <span className="text-white/60 text-sm mb-1">Or connect with me:</span>
+      <div className="flex gap-4">
+        <a href="https://github.com/codebyrifaf?tab=repositories" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-300 text-white/80">GitHub</a>
+        <a href="https://www.linkedin.com/in/rifafrahman/" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-300 text-white/80">LinkedIn</a>
+        <a href="https://www.instagram.com/__._kaizen_.__/" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-300 text-white/80">Instagram</a>
+        <a
+          href="https://wa.me/8801875602306"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-emerald-300 text-white/80"
+        >
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</Dialog>
       </div>
     </div>
   );

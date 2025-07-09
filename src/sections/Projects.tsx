@@ -13,6 +13,7 @@ const portfolioProjects = [
     company: "DocTime",
     year: "2025 - Running",
     title: "Full Stack Doctor Appointment Booking System Using MERN",
+    techStack: ["MongoDB", "Express.js", "React", "Node.js"], // <-- Add this line
     results: [
       { title: "Enhanced user experience by 40%" },
       { title: "Improved site speed by 50%" },
@@ -25,6 +26,7 @@ const portfolioProjects = [
     company: "AnimeSite",
     year: "2024",
     title: "Full-Stack Anime Review Platform",
+    techStack: ["Next.js", "MongoDB", "Tailwind CSS"], // <-- Add this line
     results: [
       { title: "Boosted sales by 20%" },
       { title: "Expanded customer reach by 35%" },
@@ -37,6 +39,7 @@ const portfolioProjects = [
     company: "Cafeteria Management System",
     year: "2023",
     title: "Student Dining Solution",
+    techStack: ["Java", "Spring Boot", "MySQL"], // <-- Add this line
     results: [
       { title: "Enhanced user experience by 40%" },
       { title: "Improved site speed by 50%" },
@@ -51,7 +54,7 @@ const portfolioProjects = [
 
 export const ProjectsSection = () => {
   return (
-  <section className="pb-16 lg:py-24">
+    <section id="projects" className="pb-16 lg:py-24">
     <div className="container">
       <SectionHeader 
       eyebrow="Real-world Results" 
@@ -78,7 +81,19 @@ export const ProjectsSection = () => {
                 </div>
 
               <h3 className="font-serif text-2xl mt-2 md:mt-5 md:text-4xl">
-                {project.title}</h3>
+                {project.title}
+              </h3>
+              {/* Tech stack display */}
+              <div className="flex flex-wrap gap-2 mt-2">
+                {project.techStack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="bg-emerald-300/20 text-emerald-300 px-2 py-0.5 rounded text-xs font-semibold"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
               <hr className="border-t-2 border-white/5 mt-4 md:mt-5"/>
               <ul className="flex flex-col gap-4 mt-4 md:mt-5">
                 {project.results.map((result,index)=>(
