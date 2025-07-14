@@ -239,23 +239,32 @@ export const AboutSection = () => {
         ))}
       </div>
   </Card>
-  <Card className="h-[320px] p-0 relative md:col-span-2 lg:col-span-1">
-    <Image 
-    src={mapImage} 
-    alt="map" 
-    className="h-full w-full object-cover object-left-top" />
-    
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20 rounded-full after:content-[''] after:absolute after:inset-0 after:outline after:outline-2 after:-outline-offset-2 after:rounded-full
-    after:outline-gray-950/30">
-      <div className="absolute inset-0 rounded-full bg-gradient-t0-r from-emerald-300 to-sky-400 -z-20 animate-ping [animation-duration:2s]"></div>
-      <div className="absolute inset-0 rounded-full bg-gradient-t0-r from-emerald-300 to-sky-400 -z-10 animate-ping [animation-duration:2s] "></div>
-
-    <Image 
-    src={smileMemoji} 
-    alt="smiling memoji" 
-    className="size-10"/>
+  <Card className="h-[320px] p-0 relative overflow-hidden md:col-span-2 lg:col-span-1">
+  <div className="absolute inset-0 -z-10">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7497557.515423627!2d85.05149335293696!3d23.427374067522862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30adaaed80e18ba7%3A0xf2d28e0c4e1fc6b!2sBangladesh!5e0!3m2!1sen!2sbd!4v1752511667566!5m2!1sen!2sbd"
+      width="100%"
+      height="100%"
+      style={{ border: 0 }}
+      allowFullScreen={true}
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+      className="grayscale"
+    />
+  </div>
+  <div className="absolute inset-0 bg-gradient-to-r from-emerald-300/20 to-sky-400/20"></div>
+  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+    <div className="size-20 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 p-px flex items-center justify-center">
+      <div className="size-[76px] rounded-full bg-gray-900 flex items-center justify-center">
+        <Image
+          src={smileMemoji}
+          alt="Smiling memoji"
+          className="size-16 rounded-full"
+        />
+      </div>
     </div>
-  </Card>
+  </div>
+</Card>
 </div>
   </div>
   </div>
