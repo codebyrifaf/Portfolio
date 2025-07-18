@@ -36,26 +36,27 @@ export const TestimonialsSection = () => {
 	const [startX, setStartX] = useState(0);
 	const [startTransform, setStartTransform] = useState(0);
 
-	// Auto-scroll animation
-	useEffect(() => {
-		if (isDragging) return;
+	// Auto-scroll animation - DISABLED
+	// useEffect(() => {
+	// 	if (isDragging) return;
 
-		const interval = setInterval(() => {
-			setTransform((prev) => prev - 0.5);
-		}, 16);
+	// 	const interval = setInterval(() => {
+	// 		setTransform((prev) => prev - 0.5);
+	// 	}, 16);
 
-		return () => clearInterval(interval);
-	}, [isDragging]);
+	// 	return () => clearInterval(interval);
+	// }, [isDragging]);
 
-	// Reset position when it goes too far
+	// Infinite loop reset - seamless cycling
 	useEffect(() => {
 		const cardWidth = 400; // Approximate card width
 		const totalWidth = testimonials.length * cardWidth;
 
+		// Seamless infinite loop
 		if (transform <= -totalWidth) {
 			setTransform(0);
 		} else if (transform > 0) {
-			setTransform(-totalWidth + cardWidth);
+			setTransform(-totalWidth);
 		}
 	}, [transform]);
 
