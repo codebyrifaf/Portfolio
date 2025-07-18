@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import darkSaasLandingPage from "@/assets/images/dark-saas-landing-page.png";
 import lightSaasLandingPage from "@/assets/images/light-saas-landing-page.png";
@@ -11,6 +12,7 @@ import craftedsoulpage from "@/assets/images/craftedsoulpage.png";
 import hms from "@/assets/images/hms.png";
 import anime from "@/assets/images/anime.png";
 import app from "@/assets/images/app.png";
+import { motion } from "framer-motion";
 const portfolioProjects = [
   {
     company: "Docschedule",
@@ -136,75 +138,83 @@ export const ProjectsSection = () => {
      
       <div className="mt-10 md:mt-20 flex flex-col gap-20">
         {portfolioProjects.map((project,projectIndex) =>(
-          <Card 
-          key={project.title} 
-          className="px-8 pb-0 pt-8 md:pt-12 md:px-10 lg:pt-16 lg:px-20">
+          <motion.div
+            key={project.title}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: projectIndex * 0.1 }}
+            viewport={{ once: true }}
+          >
+            <Card 
+              className="px-8 pb-0 pt-8 md:pt-12 md:px-10 lg:pt-16 lg:px-20 hover:shadow-xl hover:shadow-emerald-300/10 transition-all duration-300 hover:border-emerald-300/20 group">
 
-            
-            <div className="lg:grid lg:grid-cols-2 lg:gap-16">
-              <div className="lg:pb-16">
+              
+              <div className="lg:grid lg:grid-cols-2 lg:gap-16">
+                <div className="lg:pb-16">
 
-                <div className="bg-gradient-to-tr from-emerald-300 to-sky-400 inline-flex gap-2 font-bold uppercase tracking-widest text-sm text-transparent bg-clip-text">
-                <span>{project.company}</span>
-                <span>&bull;</span>
-                <span>{project.year}</span>
+                  <div className="bg-gradient-to-tr from-emerald-300 to-sky-400 inline-flex gap-2 font-bold uppercase tracking-widest text-sm text-transparent bg-clip-text">
+                  <span>{project.company}</span>
+                  <span>&bull;</span>
+                  <span>{project.year}</span>
+                  </div>
+
+                <h3 className="font-serif text-2xl mt-2 md:mt-5 md:text-4xl group-hover:text-emerald-300 transition-colors duration-300">
+                  {project.title}
+                </h3>
+                {/* Tech stack display */}
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {project.techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="bg-emerald-300/20 text-emerald-300 px-2 py-0.5 rounded text-xs font-semibold hover:bg-emerald-300/30 transition-colors duration-200"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
-
-              <h3 className="font-serif text-2xl mt-2 md:mt-5 md:text-4xl">
-                {project.title}
-              </h3>
-              {/* Tech stack display */}
-              <div className="flex flex-wrap gap-2 mt-2">
-                {project.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="bg-emerald-300/20 text-emerald-300 px-2 py-0.5 rounded text-xs font-semibold"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <hr className="border-t-2 border-white/5 mt-4 md:mt-5"/>
-              <ul className="flex flex-col gap-4 mt-4 md:mt-5">
-                {project.results.map((result,index)=>(
-                  <li key={index}className="flex gap-2 text-sm md:text-base text-white/50">
-                    <CheckCircleIcon className="size-5 md:size-6" />
-                    <span>{result.title}</span></li>
-                ))}
-              </ul>
-              <div className="flex flex-col sm:flex-row gap-3 mt-8">
-                <a href={project.link} target="_blank" rel="noopener noreferrer">
-                  <button className="bg-white text-gray-950 h-12 w-full sm:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2">
-                    <span>View Code</span>
-                    <ArrowUpRightIcon className="size-4"/>
-                  </button>
-                </a>
-                {project.liveDemo && (
-                  <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">
-                    <button className="bg-emerald-300 text-gray-950 h-12 w-full sm:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2">
-                      <span>Live Demo</span>
+                <hr className="border-t-2 border-white/5 mt-4 md:mt-5 group-hover:border-emerald-300/20 transition-colors duration-300"/>
+                <ul className="flex flex-col gap-4 mt-4 md:mt-5">
+                  {project.results.map((result,index)=>(
+                    <li key={index} className="flex gap-2 text-sm md:text-base text-white/50 group-hover:text-white/70 transition-colors duration-300">
+                      <CheckCircleIcon className="size-5 md:size-6 group-hover:text-emerald-300 transition-colors duration-300" />
+                      <span>{result.title}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex flex-col sm:flex-row gap-3 mt-8">
+                  <a href={project.link} target="_blank" rel="noopener noreferrer">
+                    <button className="bg-white text-gray-950 h-12 w-full sm:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2 hover:bg-emerald-100 hover:scale-105 transition-all duration-200">
+                      <span>View Code</span>
                       <ArrowUpRightIcon className="size-4"/>
                     </button>
                   </a>
-                )}
-                {project.demo && (
-                  <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                    <button className="bg-sky-400 text-gray-950 h-12 w-full sm:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2">
-                      <span>Demo</span>
-                      <ArrowUpRightIcon className="size-4"/>
-                    </button>
-                  </a>
-                )}
+                  {project.liveDemo && (
+                    <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">
+                      <button className="bg-emerald-300 text-gray-950 h-12 w-full sm:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2 hover:bg-emerald-400 hover:scale-105 transition-all duration-200">
+                        <span>Live Demo</span>
+                        <ArrowUpRightIcon className="size-4"/>
+                      </button>
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                      <button className="bg-sky-400 text-gray-950 h-12 w-full sm:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2 hover:bg-sky-500 hover:scale-105 transition-all duration-200">
+                        <span>Demo</span>
+                        <ArrowUpRightIcon className="size-4"/>
+                      </button>
+                    </a>
+                  )}
+                </div>
+                </div>
+                <div className="relative lg:pb-16">
+                <Image 
+                src={project.image} 
+                alt={project.title} 
+                className="mt-8 -mb-4 md:-mb-0 lg:mt-0 lg:mb-0 rounded-2xl w-full h-auto object-cover lg:h-full lg:object-contain group-hover:shadow-lg group-hover:shadow-emerald-300/20 transition-shadow duration-300"/>
+                </div>
               </div>
-              </div>
-              <div className="relative lg:pb-16">
-              <Image 
-              src={project.image} 
-              alt={project.title} 
-              className="mt-8 -mb-4 md:-mb-0 lg:mt-0 lg:mb-0 rounded-2xl w-full h-auto object-cover lg:h-full lg:object-contain"/>
-              </div>
-              </div>
-          </Card>
+            </Card>
+          </motion.div>
         ))}
       </div>
     </div>
