@@ -6,7 +6,7 @@ export const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "projects", "testimonials", "about", "education"];
+      const sections = ["home", "projects", "testimonials", "about"];
       const scrollPosition = window.scrollY;
       
       // If we're at the very top, always show home as active
@@ -93,13 +93,6 @@ export const Header = () => {
           type="button"
         >
           About
-        </button>
-        <button 
-          onClick={() => scrollToSection("education")}
-          className={`nav-item ${activeSection === "education" ? "bg-white text-gray-900" : ""}`}
-          type="button"
-        >
-          Education
         </button>
       </nav>
     </div>

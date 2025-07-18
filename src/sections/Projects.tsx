@@ -10,19 +10,34 @@ import { Card } from "@/components/Card";
 import craftedsoulpage from "@/assets/images/craftedsoulpage.png";
 import hms from "@/assets/images/hms.png";
 import anime from "@/assets/images/anime.png";
+import app from "@/assets/images/app.png";
 const portfolioProjects = [
   {
-    company: "DocTime",
+    company: "Docschedule",
     year: "2025 - Running",
     title: "Full Stack Doctor Appointment Booking System Using MERN",
-    techStack: ["Mern Stack", "Express.js", "React", "Node.js", "MongoDB"], // <-- Add this line
+    techStack: ["Mern Stack", "Express.js", "React", "Node.js", "MongoDB"],
     results: [
       { title: "Built a booking system with role-based access for doctors and patients." },
       { title: "Designed a doctor dashboard for schedule management and patient communication." },
       { title: "Developed a responsive React frontend with a powerful Node.js, Express, and MongoDB backend." },
     ],
     link: "https://github.com/codebyrifaf/DocTime",
+    liveDemo: "https://docschedule.vercel.app/", 
     image: hms,
+  },
+  {
+    company: "Foodex",
+    year: "2025",
+    title: "Restaurant-Specific Food Ordering & Delivery App ",
+    techStack: ["React Native", "Appwrite (Auth, Database, Storage)", "Context API", "Responsive UI"], // <-- Add this line
+    results: [
+      { title: "Built a modular voxel engine with chunks, procedural biomes, and block interaction." },
+      { title: "Added threaded loading, dynamic lighting, and optimized textures for performance." },
+      { title: "Designed scalable block systems, custom UI, and planned multiplayer support." },
+    ],
+    link: "https://github.com/codebyrifaf/Foodex",
+    image: app,
   },
   {
     company: "Crafted Soul",
@@ -30,24 +45,26 @@ const portfolioProjects = [
     title: "Responsive eCommerce Website ",
     techStack: ["HTML5", "CSS3", "JavaScript,", "Responsive Design"], // <-- Add this line
     results: [
-      { title: "Built a modular voxel engine with chunks, procedural biomes, and block interaction." },
-      { title: "Added threaded loading, dynamic lighting, and optimized textures for performance." },
-      { title: "Designed scalable block systems, custom UI, and planned multiplayer support." },
+      { title: "Developed a full-featured mobile app for single-restaurant food ordering and delivery." },
+      { title: "Used Appwrite for auth, real-time DB, and media storage integration." },
+      { title: "Built responsive UI and managed state globally with Context API." },
     ],
-    link: "https://crafted-soul.vercel.app/",
+    link: "https://github.com/codebyrifaf/Crafted-Soul",
+    liveDemo: "https://crafted-soul.vercel.app/",
     image: craftedsoulpage,
   },
   {
     company: "PixelForge",
     year: "2023",
     title: "Modular Procedural Voxel Engine Game in Unity",
-    techStack: ["C#", "Unity", "Procedural Generation", "Multi Threading", "Custom Shaders", "ECS"], // <-- Add this line
+    techStack: ["C#", "Unity", "Procedural Generation", "Multi Threading", "Custom Shaders", "ECS"],
     results: [
       { title: "Built a modular voxel engine with chunks, procedural biomes, and block interaction." },
       { title: "Added threaded loading, dynamic lighting, and optimized textures for performance." },
       { title: "Designed scalable block systems, custom UI, and planned multiplayer support." },
     ],
     link: "https://github.com/codebyrifaf/PixelForge-A-voxel-Based-Game-",
+    demo: "https://drive.google.com/file/d/1NmiPXRTpRsb24hKkGToyHRe-UY7W9sQc/view", 
     image: darkSaasLandingPage,
   },
   {
@@ -158,12 +175,30 @@ export const ProjectsSection = () => {
                     <span>{result.title}</span></li>
                 ))}
               </ul>
-              <a href={project.link}>
-              <button className="bg-white text-gray-950 h-12 w-full md:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2 mt-8">
-                <span>Visit</span>
-                <ArrowUpRightIcon className="size-4"/>
-                </button>
-              </a>
+              <div className="flex flex-col sm:flex-row gap-3 mt-8">
+                <a href={project.link} target="_blank" rel="noopener noreferrer">
+                  <button className="bg-white text-gray-950 h-12 w-full sm:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2">
+                    <span>View Code</span>
+                    <ArrowUpRightIcon className="size-4"/>
+                  </button>
+                </a>
+                {project.liveDemo && (
+                  <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">
+                    <button className="bg-emerald-300 text-gray-950 h-12 w-full sm:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2">
+                      <span>Live Demo</span>
+                      <ArrowUpRightIcon className="size-4"/>
+                    </button>
+                  </a>
+                )}
+                {project.demo && (
+                  <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                    <button className="bg-sky-400 text-gray-950 h-12 w-full sm:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2">
+                      <span>Demo</span>
+                      <ArrowUpRightIcon className="size-4"/>
+                    </button>
+                  </a>
+                )}
+              </div>
               </div>
               <div className="relative lg:pb-16">
               <Image 
