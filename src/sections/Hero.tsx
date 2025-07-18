@@ -64,7 +64,7 @@ export const HeroSection = () => {
             alt="Person peeking from behind laptop"
             priority
           />
-          <div className="bg-gray-950 border border-gray-800 px-4 py-1.5 inline-flex items-center gap-4 rounded-lg mt-4">
+          <div className="bg-gray-950 border border-gray-800 px-4 py-1.5 inline-flex items-center gap-4 rounded-lg ">
             <div className="bg-green-500 size-2.5 rounded-full relative">
               <div className="bg-green-500 absolute inset-0 rounded-full animate-ping-large"></div>
             </div>

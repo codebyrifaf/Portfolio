@@ -49,16 +49,22 @@ export const TestimonialsSection = () => {
 
 	// Infinite loop reset - seamless cycling
 	useEffect(() => {
+		if (isDragging) return; // Don't reset while dragging
+		
 		const cardWidth = 400; // Approximate card width
 		const totalWidth = testimonials.length * cardWidth;
 
-		// Seamless infinite loop
-		if (transform <= -totalWidth) {
-			setTransform(0);
-		} else if (transform > 0) {
-			setTransform(-totalWidth);
-		}
-	}, [transform]);
+		// Seamless infinite loop with slight delay for smoother experience
+		const timer = setTimeout(() => {
+			if (transform <= -totalWidth) {
+				setTransform(0);
+			} else if (transform > 0) {
+				setTransform(-totalWidth);
+			}
+		}, 50);
+
+		return () => clearTimeout(timer);
+	}, [transform, isDragging]);
 
 	// Mouse events
 	const handleMouseDown = (e: React.MouseEvent) => {
@@ -108,12 +114,12 @@ export const TestimonialsSection = () => {
 				<div className="mt-12 lg:mt-20 flex overflow-x-clip [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] py-4 -my-4">
 					<div
 						ref={containerRef}
-						className={`flex gap-8 pr-8 flex-none transition-transform duration-100 ${
+						className={`flex gap-8 pr-8 flex-none ${
 							isDragging ? "cursor-grabbing" : "cursor-grab"
 						}`}
 						style={{
 							transform: `translateX(${transform}px)`,
-							transitionDuration: isDragging ? "0ms" : "100ms",
+							transition: isDragging ? "none" : "transform 0.3s ease-out",
 						}}
 						onMouseDown={handleMouseDown}
 						onMouseMove={handleMouseMove}

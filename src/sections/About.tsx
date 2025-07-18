@@ -249,13 +249,12 @@ export const AboutSection = () => {
       allowFullScreen={true}
       loading="lazy"
       referrerPolicy="no-referrer-when-downgrade"
-      className="grayscale"
     />
   </div>
-  <div className="absolute inset-0 bg-gradient-to-r from-emerald-300/20 to-sky-400/20"></div>
+  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 via-transparent to-transparent"></div>
   <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-    <div className="size-20 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 p-px flex items-center justify-center">
-      <div className="size-[76px] rounded-full bg-gray-900 flex items-center justify-center">
+    <div className="size-20 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 p-px flex items-center justify-center animate-pulse">
+      <div className="size-[76px] rounded-full bg-gray-900 flex items-center justify-center shadow-lg">
         <Image
           src={smileMemoji}
           alt="Smiling memoji"
