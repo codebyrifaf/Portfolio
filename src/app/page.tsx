@@ -7,6 +7,7 @@ import { TestimonialsSection } from "@/sections/Testimonials";
 import { AboutSection } from "@/sections/About";
 import { EducationSection } from "@/sections/Education"; // Changed import
 import { Footer } from "@/sections/Footer";
+import { AIChat } from "@/components/AIChat";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <AboutSection/>
       <EducationSection/> {/* Changed from ContactSection */}
       <Footer/>
+      <AIChat/>
     </div>
   );
 }
